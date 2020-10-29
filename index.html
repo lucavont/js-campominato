@@ -5,9 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campo Minato</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="functions.js"></script>
 </head>
 
 <body>
+    <h1 id="title">Campo Minato:</h1>
+    <h3>Vengono estratti 16 numeri da 1 a 100, successivamente inserisci un numero. <br> Se il numero è gia presente, perdi. Se il numero non è presente continua quindi inserendo un altro numero. <br> Vinci la partita quando non trovi nessuna bomba (numero
+        già estratto).
+    </h3>
+    <h1>Seleziona la difficoltà:</h1>
+    <select name="" id="difficulty">
+        <option value="facile">Facile (84 chance con numeri da 1-100)</option>
+        <option value="intermedio">Intermedio (64 chance con numeri da 1-80)</option>
+        <option value="difficile">Difficile (34 chance con numeri da 1-50)</option>
+    </select>
+    <input id="play-btn" type="button" value="Gioca">
     <script src="script.js"></script>
 </body>
 
