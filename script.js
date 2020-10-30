@@ -2,13 +2,9 @@ var randomNumList = [];
 var generatedNum;
 var userPickedNum = [];
 var userNum;
-var maxAttemptsEasy = 84;
-var maxAttemptsInt = 64;
-var maxAttemptsDifficult = 34;
-var maxBombEasy = 100;
-var maxBombInt = 80;
-var maxBombDifficult = 50;
-var difficulty = (document.getElementById('difficulty'))
+var maxRange = 100;
+var maxAttempts = maxRange - 16;
+var difficulty = (document.getElementById('difficulty')).value;
 
 
 
@@ -27,16 +23,25 @@ var hasWon = false;
 // console.log(hasWon, isAlive)
 
 
+
 document.getElementById('play-btn').addEventListener('click', function() {
 
+    switch (difficulty) {
+        case "facile":
+            maxRange = 100;
+            break;
+        case "intermedio":
+            maxRange = 80;
+            break;
+        case "difficile":
+            maxRange = 50;
+            break;
+    }
+
+
+
     while (randomNumList.length < 16) {
-        if (difficulty.value === 'facile') {
-            generatedNum = getRandomIntInclusive(1, maxBombEasy)
-        } else if (difficulty.value === 'intermedio') {
-            generatedNum = getRandomIntInclusive(1, maxBombInt)
-        } else if (difficulty.value === 'difficile') {
-            generatedNum = getRandomIntInclusive(1, maxBombDifficult);
-        }
+        generatedNum = getRandomIntInclusive(1, maxRange)
         if (randomNumList.indexOf(generatedNum) === -1) {
             randomNumList.push(generatedNum);
         }
@@ -46,10 +51,12 @@ document.getElementById('play-btn').addEventListener('click', function() {
         if (randomNumList.includes(userNum)) {
             alert('Oh no, il numero è già presente! Hai perso. Hai fatto ' + (userPickedNum.length + 1) + " round. I tuoi numeri: " + userPickedNum)
             isAlive = false;
+        } else if (userPickedNum.includes(userNum)) {
+            alert('Numero già inserito, riprova!')
         } else {
             userPickedNum.push(userNum)
         }
-        if (userPickedNum.length > maxAttemptsEasy) {
+        if (userPickedNum.length > maxAttempts) {
             alert('HAI VINTO! Hai fatto ' + userPickedNum.length + " round. I tuoi numeri: " + userPickedNum)
             hasWon = true;
         }
