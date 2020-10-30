@@ -37,9 +37,9 @@ document.getElementById('play-btn').addEventListener('click', function() {
         } else if (difficulty.value === 'difficile') {
             generatedNum = getRandomIntInclusive(1, maxBombDifficult);
         }
-        (randomNumList.indexOf(generatedNum) === -1)
-        randomNumList.push(generatedNum);
-
+        if (randomNumList.indexOf(generatedNum) === -1) {
+            randomNumList.push(generatedNum);
+        }
     }
     while (!hasWon && isAlive) {
         userNum = parseInt(prompt('Inserisci un numero'));
