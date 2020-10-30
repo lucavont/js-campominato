@@ -5,7 +5,10 @@ var userNum;
 var maxAttemptsEasy = 84;
 var maxAttemptsInt = 64;
 var maxAttemptsDifficult = 34;
-
+var maxBombEasy = 100;
+var maxBombInt = 80;
+var maxBombDifficult = 50;
+var difficulty = (document.getElementById('difficulty'))
 
 
 
@@ -13,6 +16,8 @@ var maxAttemptsDifficult = 34;
 randomNumList.sort(function compare(a, b) {
     return a > b;
 });
+
+
 // console.log(randomNumList)
 // console.log(userNum)
 // console.log(userPickedNum)
@@ -23,27 +28,18 @@ var hasWon = false;
 
 
 document.getElementById('play-btn').addEventListener('click', function() {
-    if (document.getElementById('difficulty').value === 'facile') {
-        while (randomNumList.length < 16) {
-            generatedNum = getRandomIntInclusive(1, 100)
-            if (randomNumList.indexOf(generatedNum) === -1) {
-                randomNumList.push(generatedNum)
-            }
+
+    while (randomNumList.length < 16) {
+        if (difficulty.value === 'facile') {
+            generatedNum = getRandomIntInclusive(1, maxBombEasy)
+        } else if (difficulty.value === 'intermedio') {
+            generatedNum = getRandomIntInclusive(1, maxBombInt)
+        } else if (difficulty.value === 'difficile') {
+            generatedNum = getRandomIntInclusive(1, maxBombDifficult);
         }
-    } else if (document.getElementById('difficulty').value === 'intermedio') {
-        while (randomNumList.length < 16) {
-            generatedNum = getRandomIntInclusive(1, 80)
-            if (randomNumList.indexOf(generatedNum) === -1) {
-                randomNumList.push(generatedNum)
-            }
-        }
-    } else if (document.getElementById('difficulty').value === 'difficile') {
-        while (randomNumList.length < 16) {
-            generatedNum = getRandomIntInclusive(1, 50)
-            if (randomNumList.indexOf(generatedNum) === -1) {
-                randomNumList.push(generatedNum)
-            }
-        }
+        (randomNumList.indexOf(generatedNum) === -1)
+        randomNumList.push(generatedNum);
+
     }
     while (!hasWon && isAlive) {
         userNum = parseInt(prompt('Inserisci un numero'));
@@ -58,5 +54,4 @@ document.getElementById('play-btn').addEventListener('click', function() {
             hasWon = true;
         }
     }
-
 })
